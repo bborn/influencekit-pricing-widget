@@ -90,12 +90,15 @@
 
         <h3 class="ui header">
           <div class="sub header">Estimated monthly total</div>
-          ${{ Math.round((12 * 199 + totalCost) / 12) }}/month
+          ${{ Math.round((12 * 199 + totalCost) / 12).toLocaleString() }}/month
         </h3>
 
         <h3 class="ui header">
           <div class="sub header">Estimated total cost for one year</div>
-          ${{ 12 * 199 + totalCost }}/year ({{ creditsBought }} reports)
+          ${{ (12 * 199 + totalCost).toLocaleString() }}/year ({{
+            creditsBought
+          }}
+          reports)
         </h3>
 
         <div v-if="creditsRemaining > 0">
