@@ -291,9 +291,10 @@ a {
 
 #main .column:first-child {
   padding-left: 50px;
+  padding-right: 50px;
 }
 #main .column:last-child {
-  padding-left: 20px;
+  padding-left: 50px;
   padding-right: 50px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
