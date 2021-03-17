@@ -6,6 +6,7 @@
 
         <strong>How many campaigns do you expect to run this year?</strong>
         <div class="fields">
+          <!-- nothing -->
           <div class="field" style="width: calc(100% - 60px)">
             <div class="ui slider" id="slider-1"></div>
           </div>
