@@ -1,5 +1,5 @@
 <template>
-  <div class="ui segment">
+  <div class="ui segment" id="main">
     <div class="ui grid left aligned">
       <div class="ui column nine wide form horizontal">
         <p>Let’s estimate your reporting cost:</p>
@@ -278,5 +278,24 @@ li {
 }
 a {
   color: #42b983;
+}
+
+#main {
+  border-radius: 10px;
+}
+
+#main .column {
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+#main .column:first-child {
+  padding-left: 50px;
+}
+#main .column:last-child {
+  padding-left: 20px;
+  padding-right: 50px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 </style>
