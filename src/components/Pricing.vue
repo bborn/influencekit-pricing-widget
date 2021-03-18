@@ -300,3 +300,10 @@ a {
   border-bottom-right-radius: 10px;
 }
 </style>
+
+
+<style>
+.ui.slider .inner .track-fill {
+  background-color: #F0806F !important;
+}
+</style>
