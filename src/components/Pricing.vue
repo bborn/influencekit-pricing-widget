@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        <div class="ui four cards pt-40">
+        <div class="ui four cards stackable pt-40">
           <div v-for="model in paymentModels" :key="model.reportCost" class="ui card"
             :class="{ active: model.reportCost == costPerReport }" @click="setCostPerReport(model.reportCost)">
             <div class="content center aligned body2-semibold">
