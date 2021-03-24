@@ -10,10 +10,10 @@
           How many campaigns do you expect to run this year?
         </div>
         <div class="fields">
-          <div class="field" style="width: calc(100% - 60px)">
+          <div class="field" style="width: calc(100% - 75px)">
             <div class="ui slider" id="slider-1"></div>
           </div>
-          <div class="field" style="width: 60px">
+          <div class="field" style="width: 75px">
             <div class="ui input">
               <input type="text" id="slider-input-1" v-model="campaignsPerMonth" />
             </div>
@@ -23,10 +23,10 @@
           How many influencers on each campaign?
         </div>
         <div class="fields">
-          <div class="field" style="width: calc(100% - 60px)">
+          <div class="field" style="width: calc(100% - 75px)">
             <div class="ui slider" id="slider-2"></div>
           </div>
-          <div class="field" style="width: 60px">
+          <div class="field" style="width: 75px">
             <div class="ui input">
               <input type="text" id="slider-input-2" v-model="influencersPerCampaign" />
             </div>
