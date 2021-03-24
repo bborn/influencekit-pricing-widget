@@ -55,10 +55,8 @@
 					</div>
 				</div>
 			</div>
-			​
 			<div class="ui column seven wide" id="rightSide">
 				<h3 class="body1-bold white-100 pb-32">Your reporting cost is:</h3>
-				​
 				<h3 class="h4-extrabold white">
 					<div class="body1-bold white-100 pb-12">Per report cost</div>
 					${{ costPerReport }}/report
