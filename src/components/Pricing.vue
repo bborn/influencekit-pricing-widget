@@ -1,12 +1,50 @@
 <template>
-  <div class="ui segment" id="main">
-    <!-- touch -->
-    <div class="ui grid left aligned">
+  <div class="ui segment compact" id="main">
+    <div class="ui large basic label">
+      <i
+        @click.stop.prevent="decrementCampaignsPerMonth"
+        class="icon minus link compact fitted"
+      ></i>
+      {{ campaignsPerMonth }}
+      <i
+        @click.stop.prevent="incrementCampaignsPerMonth"
+        class="icon plus link compact fitted"
+      ></i>
+      Campaigns this year
+    </div>
+
+    <span class="margin-x-small">with</span>
+
+    <div class="ui large basic label">
+      <i
+        @click.stop.prevent="decrementInfluencersPerCampaign"
+        class="icon minus link compact fitted"
+      ></i>
+      {{ influencersPerCampaign }}
+      <i
+        @click.stop.prevent="incrementInfluencersPerCampaign"
+        class="icon plus link compact fitted"
+      ></i>
+      Influencers
+    </div>
+
+    <strong class="margin-x-small">
+      <i class="icon equals"></i>
+    </strong>
+
+    <div class="ui large basic label result">
+      ${{ Math.round((12 * 199 + totalCost) / 12).toLocaleString() }}/month
+
+      <span class="text-light">
+        or ${{ costPerReport }}/report
+        <span id="discount-label" v-if="selectedPaymentModel.bundleDiscount">
+          {{ selectedPaymentModel.bundleDiscount }}
+        </span>
+      </span>
+    </div>
+
+    <div class="ui grid left aligned" style="display: none">
       <div class="ui column nine wide form horizontal">
-        <div class="body1-regular mb-40">
-          Let’s estimate your reporting cost:
-          {{ totalReports }} Reports
-        </div>
         <div class="body1-bold pb-8 black-100">
           How many campaigns do you expect to run this year?
         </div>
@@ -84,9 +122,7 @@
           <div class="body1-bold white-100 pb-12 pt-32">
             Estimated monthly total:
           </div>
-          ${{
-            Math.round((12 * 199 + totalCost) / 12).toLocaleString()
-          }}/month
+          ${{ Math.round((12 * 199 + totalCost) / 12).toLocaleString() }}/month
           <!-- <br>
           2. ${{ Math.round((12 * 199 + (creditsBought * costPerReport)) / 12).toLocaleString() }}/month -->
         </h3>
@@ -186,6 +222,22 @@ export default {
     },
   },
   methods: {
+    incrementCampaignsPerMonth() {
+      this.campaignsPerMonth++;
+    },
+    decrementCampaignsPerMonth() {
+      if (this.campaignsPerMonth > 1) {
+        this.campaignsPerMonth--;
+      }
+    },
+    incrementInfluencersPerCampaign() {
+      this.influencersPerCampaign++;
+    },
+    decrementInfluencersPerCampaign() {
+      if (this.influencersPerCampaign > 1) {
+        this.influencersPerCampaign--;
+      }
+    },
     setCostPerReport(cost) {
       this.costPerReport = cost;
     },
@@ -243,193 +295,34 @@ export default {
 
 
 <style scoped>
-#rightSide {
-  background-color: #F0806F;
-  border-radius: 0px 6px 6px 0px;
-}
-
-#rightSide * {
-  color: #fff;
-}
-
-#rightSide h3.ui.header {
-  font-weight: 800;
-}
-
-#rightSide h3.ui.header .sub.header {
-  font-weight: 400;
-}
-
-.ui.card {
-  cursor: pointer;
+.ui.label.large.basic {
+  min-width: 300px;
+  font-size: 18px;
   user-select: none;
-}
-
-.ui.card,
-.ui.cards > .card {
-  border-radius: 6px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.22);
-}
-
-.ui.card.active {
-  border: 2px solid #707F87;
-  box-shadow: none;
+  padding: 18px;
   border-radius: 6px;
 }
 
-.ui.card .content {
-  font-weight: 600;
+.ui.label.large.basic i.icon {
+  font-size: 14px;
+  margin-right: 9px !important;
+  margin-left: 9px !important;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
-.ui.mini.label.white {
-  border-radius: 20px;
-  color: #F0806F !important;
-  background-color: #fff;
-  font-weight: 800 !important;
-}
-
-h3 {
-  margin: 0px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0px;
-}
-
-li {
-  display: block;
-  margin: 0px 0px 0px 8px;
-}
-
-a {
-  color: #42b983;
+.ui.label.result {
+  min-width: 350px !important;
 }
 
 #main {
-  border-radius: 6px;
-}
-
-#main .column {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-#main .column:first-child {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-#main .column:last-child {
-  padding-left: 40px;
-  padding-right: 40px;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-
-.ui.slider .inner .track-fill {
-  background-color: #F0806F !important;
-}
-
-.ui.form .fields {
-  margin: 0px -6px 0px -14px;
-}
-
-.h4-extrabold {
-  font-family: "Inter", sans-serif;
-  font-weight: 800;
-  font-size: 24px;
-  letter-spacing: -0.2px;
-  line-height: 24px;
-}
-
-.body1-regular {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: rgba(0, 0, 0, 0.87);
-  text-align: left;
-  line-height: 24px;
-}
-
-.body1-bold {
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: left;
-  line-height: 20px;
-}
-
-.body2-semibold {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
+  min-width: 1202px;
   text-align: center;
-  line-height: 16px;
-  vertical-align: middle;
-}
-
-.black-100 {
-  color: #000000;
-}
-
-.black-87 {
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.white-100 {
-  color: #FFFFFF;
-}
-
-.mb-40 {
-  margin-bottom: 40px;
-}
-
-.pt-48 {
-  padding-top: 48px;
-}
-
-.pt-40 {
-  padding-top: 40px;
-}
-
-.pt-32 {
-  padding-top: 32px;
-}
-
-.pb-32 {
-  padding-bottom: 32px;
-}
-
-.pb-12 {
-  padding-bottom: 12px;
-}
-
-.pt-8 {
-  padding-top: 8px;
-}
-
-.pb-8 {
-  padding-bottom: 8px;
-}
-
-.ui.segment {
-  box-shadow: none;
+  font-size: 18px;
   border-radius: 6px;
-}
-
-li {
-  padding-left: -10px;
-}
-
-li:before {
-  content: "\f058";
-  /* FontAwesome Unicode */
-  font-family: FontAwesome;
-  display: inline-block;
-  margin-left: -10px;
-  width: 18px;
+  border-width: 0;
+  background-color: #F1F8F6;
+  box-shadow: none;
 }
 
 #discount-label {
@@ -443,20 +336,16 @@ li:before {
   padding: 4px 8px;
   display: inline-block;
   border-radius: 99px;
-  color: #EB554E;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.87);
+  color: #fff;
 }
 
-.ui.input {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
+.margin-x-small {
+  margin-left: 16px;
+  margin-right: 16px;
 }
-</style>
 
-
-<style>
-.ui.slider .inner .track-fill {
-  background-color: #F0806F !important;
+.text-light {
+  font-weight: normal !important;
 }
 </style>
