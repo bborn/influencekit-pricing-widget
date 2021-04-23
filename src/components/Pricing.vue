@@ -2,12 +2,12 @@
   <div class="ui segment compact" id="main">
     <div class="ui large basic label">
       <i
-        @click.stop.prevent="decrementCampaignsPerMonth"
+        @click.stop.prevent="decrementcampaignsPerYear"
         class="icon minus link compact fitted"
       ></i>
-      {{ campaignsPerMonth }}
+      <input type="text" v-model="campaignsPerYear" size="2" />
       <i
-        @click.stop.prevent="incrementCampaignsPerMonth"
+        @click.stop.prevent="incrementcampaignsPerYear"
         class="icon plus link compact fitted"
       ></i>
       Campaigns this year
@@ -20,7 +20,9 @@
         @click.stop.prevent="decrementInfluencersPerCampaign"
         class="icon minus link compact fitted"
       ></i>
-      {{ influencersPerCampaign }}
+
+      <input type="text" v-model="influencersPerCampaign" size="2" />
+
       <i
         @click.stop.prevent="incrementInfluencersPerCampaign"
         class="icon plus link compact fitted"
@@ -36,9 +38,10 @@
       ${{ Math.round((12 * 199 + totalCost) / 12).toLocaleString() }}/month
 
       <span class="text-light">
-        or ${{ costPerReport }}/report
-        <span id="discount-label" v-if="selectedPaymentModel.bundleDiscount">
-          {{ selectedPaymentModel.bundleDiscount }}
+        <!-- or ${{ costPerReport }}/report -->
+
+        <span id="discount-label" v-if="selectedPaymentModel.bundleDiscount" class="margin-x-small">
+          Save {{ selectedPaymentModel.bundleDiscount }} per report
         </span>
       </span>
     </div>
@@ -57,7 +60,7 @@
               <input
                 type="text"
                 id="slider-input-1"
-                v-model="campaignsPerMonth"
+                v-model="campaignsPerYear"
               />
             </div>
           </div>
@@ -172,25 +175,25 @@ export default {
           cost: 1200,
           reportCost: 24,
           bundleSize: 50,
-          bundleDiscount: "17% off",
+          bundleDiscount: "17%",
         },
         19: {
           name: "100 Credits",
           cost: 1900,
           reportCost: 19,
           bundleSize: 100,
-          bundleDiscount: "34% off",
+          bundleDiscount: "34%",
         },
         15: {
           name: "200 Credits",
           cost: 3000,
           reportCost: 15,
           bundleSize: 200,
-          bundleDiscount: "48% off",
+          bundleDiscount: "48%",
         },
       },
-      campaignsPerMonth: 5,
-      influencersPerCampaign: 5,
+      campaignsPerYear: 4,
+      influencersPerCampaign: 6,
       costPerReport: 29,
     };
   },
@@ -214,7 +217,7 @@ export default {
       return packs * credits;
     },
     totalReports() {
-      return Math.max(this.campaignsPerMonth * this.influencersPerCampaign, 1);
+      return Math.max(this.campaignsPerYear * this.influencersPerCampaign, 1);
     },
     totalCost() {
       // return this.creditsBought * this.costPerReport;
@@ -222,12 +225,12 @@ export default {
     },
   },
   methods: {
-    incrementCampaignsPerMonth() {
-      this.campaignsPerMonth++;
+    incrementcampaignsPerYear() {
+      this.campaignsPerYear++;
     },
-    decrementCampaignsPerMonth() {
-      if (this.campaignsPerMonth > 1) {
-        this.campaignsPerMonth--;
+    decrementcampaignsPerYear() {
+      if (this.campaignsPerYear > 1) {
+        this.campaignsPerYear--;
       }
     },
     incrementInfluencersPerCampaign() {
@@ -268,10 +271,10 @@ export default {
         step: 1,
         smooth: true,
         onChange: function (value) {
-          $this.campaignsPerMonth = value;
+          $this.campaignsPerYear = value;
         },
         onMove: function (value) {
-          $this.campaignsPerMonth = value;
+          $this.campaignsPerYear = value;
         },
       });
 
@@ -313,6 +316,13 @@ export default {
 
 .ui.label.result {
   min-width: 350px !important;
+}
+
+.ui.label.large input {
+  border: none;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
 }
 
 #main {
