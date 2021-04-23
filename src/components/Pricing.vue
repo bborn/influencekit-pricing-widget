@@ -316,7 +316,7 @@ export default {
 }
 
 #main {
-  min-width: 1202px;
+  line-height: 4em;
   text-align: center;
   font-size: 18px;
   border-radius: 6px;
