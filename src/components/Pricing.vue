@@ -337,7 +337,7 @@ export default {
   border-width: 0;
   background-color: #F1F8F6;
   box-shadow: none;
-  display: inline-block !important;
+  width: 100% !important;
 }
 
 #discount-label {
