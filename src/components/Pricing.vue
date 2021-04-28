@@ -40,7 +40,11 @@
       <span class="text-light">
         <!-- or ${{ costPerReport }}/report -->
 
-        <span id="discount-label" v-if="selectedPaymentModel.bundleDiscount" class="margin-x-small">
+        <span
+          id="discount-label"
+          v-if="selectedPaymentModel.bundleDiscount"
+          class="margin-x-small"
+        >
           Save {{ selectedPaymentModel.bundleDiscount }} per report
         </span>
       </span>
@@ -333,6 +337,7 @@ export default {
   border-width: 0;
   background-color: #F1F8F6;
   box-shadow: none;
+  display: inline-block !important;
 }
 
 #discount-label {
