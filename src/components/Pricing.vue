@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="ui segment compact" id="main">
     <div class="ui large basic label">
       <i
@@ -10,7 +10,7 @@
         @click.stop.prevent="incrementcampaignsPerYear"
         class="icon plus link compact fitted"
       ></i>
-      Campaigns this year
+      <span>Campaigns this year</span>
     </div>
 
     <span class="margin-x-small">with</span>
@@ -27,7 +27,7 @@
         @click.stop.prevent="incrementInfluencersPerCampaign"
         class="icon plus link compact fitted"
       ></i>
-      Influencers
+      <span> Influencers </span>
     </div>
 
     <strong class="margin-x-small">
@@ -362,5 +362,20 @@ export default {
 
 .text-light {
   font-weight: normal !important;
+}
+
+@media (max-width: 340px) {
+  .large.basic.label {
+    min-width: 0 !important;
+    line-height: 1.5em;
+    display: block;
+    width: 100%;
+  }
+
+  .label span {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
 }
 </style>
