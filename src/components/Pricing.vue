@@ -364,7 +364,7 @@ export default {
   font-weight: normal !important;
 }
 
-@media (max-width: 340px) {
+@media (max-width: 400px) {
   .large.basic.label {
     min-width: 0 !important;
     line-height: 1.5em;
